@@ -21,4 +21,8 @@ os.makedirs("/output", exist_ok=True)
 with open("/output/entry.txt", "w", encoding="utf-8") as f:
     f.write(LINE)
 
+# Read-back verification: the file on disk must be exactly the line.
+with open("/output/entry.txt", "r", encoding="utf-8") as f:
+    assert f.read() == LINE, "round-trip read-back mismatch"
+
 print(LINE)
